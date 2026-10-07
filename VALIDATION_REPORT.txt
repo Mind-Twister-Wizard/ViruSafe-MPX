@@ -1,0 +1,22 @@
+ViruSafe-MPX Package Validation Report
+======================================
+Prepared: 2026-10-06
+
+Checks completed before packaging:
+1. Python syntax compilation for run_pipeline.py and every src/*.py module: PASS
+2. Synthetic metric/calibration/conformal/OOD evaluation smoke test: PASS
+3. Patient-grouped manifest generation smoke test with zero patient/group overlap: PASS
+4. Canonical six-class folder mapping smoke test: PASS
+5. Resumability review: epoch checkpoints, atomic best/last saves, training-complete marker,
+   stage state, cached predictions, retained downloads, incremental robustness CSV: PASS
+6. Windows one-click launcher and local uv/Python/venv bootstrap included: PASS (static review)
+7. No Kaggle credentials or private API keys are embedded in the package: PASS
+
+Not performed in the packaging sandbox:
+- Full Kaggle dataset download (large external datasets)
+- Full five-fold GPU training
+- Windows PowerShell execution on the user's laptop
+
+Those operations are intentionally performed by RUN_VIRUSAFE_MPX.bat on the target Windows
+machine. The pipeline is designed so that a shutdown/interruption preserves completed work and
+re-running the same BAT resumes from checkpoints/state.

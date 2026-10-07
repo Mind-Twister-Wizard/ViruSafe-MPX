@@ -1,0 +1,64 @@
+project:
+  name: "ViruSafe-MPX"
+  seed: 42
+  device: "auto"
+
+paths:
+  data_dir: "data"
+  output_dir: "outputs"
+  state_dir: "state"
+  logs_dir: "logs"
+
+kaggle:
+  msld_slug: "joydippaul/mpox-skin-lesion-dataset-version-20-msld-v20"
+  dermnet_slug: "shubhamgoel27/dermnet"
+  download_dermnet: true
+
+training:
+  model_name: "tf_efficientnetv2_s.in21k_ft_in1k"
+  pretrained: true
+  image_size: 224
+  folds: [1, 2, 3, 4, 5]
+  batch_size: 8
+  num_workers: 2
+  max_epochs: 40
+  early_stopping_patience: 8
+  lr: 0.00015
+  weight_decay: 0.0001
+  label_smoothing: 0.05
+  grad_clip_norm: 1.0
+  accumulation_steps: 1
+  use_amp: true
+  monitor: "macro_f1"
+  min_epochs: 8
+
+calibration:
+  enabled: true
+  max_iter: 100
+
+conformal:
+  alpha: 0.10
+
+selective_prediction:
+  target_coverages: [0.70, 0.80, 0.90, 0.95]
+  primary_coverage: 0.90
+
+ood:
+  max_images_total: 2400
+  max_images_per_class: 150
+  batch_size: 16
+  id_acceptance_target: 0.95
+
+robustness:
+  enabled: true
+  fold: 1
+  severities: [1, 2, 3]
+  corruptions: ["brightness", "blur", "jpeg", "occlusion", "gaussian_noise"]
+
+explainability:
+  enabled: true
+  fold: 1
+  examples_per_type: 6
+
+report:
+  open_when_finished: true

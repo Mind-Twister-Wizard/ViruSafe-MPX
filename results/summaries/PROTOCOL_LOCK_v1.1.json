@@ -1,0 +1,70 @@
+{
+  "version": "1.1",
+  "purpose": "Pre-specified reliability enhancement and external validation; no CNN retraining; no test-label model selection.",
+  "class_order": [
+    "Mpox",
+    "Chickenpox",
+    "Measles",
+    "Cowpox",
+    "HFMD",
+    "Healthy"
+  ],
+  "reliability_head": {
+    "enabled": true,
+    "candidate_C": [
+      0.01,
+      0.03,
+      0.1,
+      0.3,
+      1.0,
+      3.0
+    ],
+    "candidate_class_weight": [
+      "none",
+      "balanced"
+    ],
+    "inner_group_folds": 3,
+    "blend_weights": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "minimum_validation_macro_f1_gain": 0.002,
+    "max_iter": 2500
+  },
+  "conformal": {
+    "alpha": 0.1,
+    "mondrian_enabled": true
+  },
+  "ood_v1_1": {
+    "enabled": true,
+    "id_acceptance_target": 0.95,
+    "ood_validation_category_fraction": 0.34,
+    "pca_dimensions": [
+      32,
+      64
+    ],
+    "knn_k": [
+      5,
+      10,
+      20
+    ],
+    "max_train_reference": 1000
+  },
+  "external_validation": {
+    "kaggle_slug": "sujaykapadnis/monkeypox-skin-images-dataset-msid",
+    "extract_dir": "data/msid_external",
+    "downloads_dir": "data/downloads",
+    "prefer_original_images": true,
+    "perceptual_hash_distance_threshold": 4
+  },
+  "selection_rules": {
+    "feature_head": "hyperparameters chosen by patient-grouped CV on training embeddings only",
+    "fusion_weight": "chosen from fixed grid on validation data; outer test labels never used",
+    "enhancement_guard": "enhanced predictor activated only when pre-specified validation macro-F1 gain is met",
+    "ood_method": "chosen using held-out DermNet validation categories; reported OOD performance uses disjoint DermNet test categories",
+    "external": "MSID excluded from all tuning; duplicate/near-duplicate filtering is applied before evaluation"
+  }
+}

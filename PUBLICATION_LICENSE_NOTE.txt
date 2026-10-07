@@ -1,0 +1,17 @@
+PUBLICATION / DATASET LICENSE NOTE
+=================================
+
+This package downloads datasets from Kaggle but does NOT redistribute their image files.
+At the time this package was prepared, Kaggle displayed:
+- MSLD v2.0: CC BY-NC 4.0
+- DermNet Kaggle dataset: CC BY-NC-ND 4.0
+
+The pipeline may generate Grad-CAM overlays from MSLD images for research inspection.
+Before placing any source image or derived image/overlay in an Elsevier book chapter,
+verify that your intended publication use is permitted by the current dataset license
+and the underlying image rights, or obtain permission. Aggregate numerical tables and
+plots that do not reproduce source images are generally easier to publish from a rights
+perspective, but the publisher's requirements should still be checked.
+
+DermNet images are used only for numerical OOD evaluation and are not copied into the
+report as example figures.

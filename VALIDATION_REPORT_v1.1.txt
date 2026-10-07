@@ -1,0 +1,20 @@
+ViruSafe-MPX v1.1 build validation
+==================================
+
+Validated in the build environment:
+- Python syntax compilation: PASS for run_v11.py, src_v11/core.py, src_v11/pipeline.py.
+- Synthetic unit smoke test: PASS for patient-grouped frozen-feature head selection,
+  probability generation, Mondrian conformal sets, PCA/shrinkage OOD scoring and
+  McNemar helper.
+- v1.1 protocol is designed to preserve v1.0.4 files and write new outputs separately.
+- Current Kaggle dataset slug for external validation verified at build time:
+  sujaykapadnis/monkeypox-skin-images-dataset-msid.
+
+Not executable inside the build environment:
+- User's actual five trained .pt checkpoints were not uploaded in Submit result.zip,
+  so full GPU inference for train embeddings, DermNet features and MSID external
+  validation could not be executed here.
+- Kaggle external download was not performed in the build environment.
+
+The user's existing ViruSafe-MPX project contains the required checkpoints/data;
+the one-click preflight verifies them before any v1.1 analysis starts.

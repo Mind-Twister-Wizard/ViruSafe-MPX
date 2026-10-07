@@ -1,0 +1,3 @@
+variant,strict_six_class_accuracy,shared_class_macro_f1_with_six_class_predictions,shared_class_balanced_accuracy_with_six_class_predictions,restricted_four_class_accuracy,restricted_four_class_macro_f1
+Baseline ensemble,0.6921898928024502,0.6687503463258411,0.6089047392286848,0.7304747320061256,0.6856224443961736
+ViruSafe-MPX v1.1 ensemble,0.7136294027565084,0.6842142821272459,0.6179259968903421,0.7641653905053599,0.7161990679513823

@@ -1,0 +1,60 @@
+project:
+  name: "ViruSafe-MPX v1.1 — Reliability Enhancement & External Validation"
+  seed: 42
+  protocol_seed: 314159
+
+paths:
+  base_output_dir: "outputs"
+  output_dir: "outputs_v1.1"
+  data_dir: "data"
+  state_file: "state/v1.1_state.json"
+
+required_base:
+  folds: [1, 2, 3, 4, 5]
+  model_name: "tf_efficientnetv2_s.in21k_ft_in1k"
+  image_size: 224
+  batch_size: 8
+  num_workers: 2
+  use_amp: true
+
+external_validation:
+  enabled: true
+  kaggle_slug: "sujaykapadnis/monkeypox-skin-images-dataset-msid"
+  extract_dir: "data/msid_external"
+  downloads_dir: "data/downloads"
+  prefer_original_images: true
+  perceptual_hash_distance_threshold: 4
+
+reliability_head:
+  enabled: true
+  candidate_C: [0.01, 0.03, 0.1, 0.3, 1.0, 3.0]
+  candidate_class_weight: ["none", "balanced"]
+  inner_group_folds: 3
+  blend_weights: [0.0, 0.25, 0.5, 0.75, 1.0]
+  minimum_validation_macro_f1_gain: 0.002
+  max_iter: 2500
+
+conformal:
+  alpha: 0.10
+  mondrian_enabled: true
+
+ood_v1_1:
+  enabled: true
+  id_acceptance_target: 0.95
+  ood_validation_category_fraction: 0.34
+  pca_dimensions: [32, 64]
+  knn_k: [5, 10, 20]
+  max_train_reference: 1000
+
+explainability_v1_1:
+  enabled: true
+  fold: 1
+  examples_per_type: 4
+  faithfulness_mask_fractions: [0.10, 0.20, 0.30]
+
+statistics:
+  bootstrap_iterations: 2000
+  bootstrap_seed: 20261007
+
+report:
+  open_when_finished: true

@@ -1,0 +1,20 @@
+{
+  "discovered_images": 770,
+  "images_after_duplicate_filter": 653,
+  "excluded_duplicates_or_near_duplicates": 115,
+  "baseline": {
+    "strict_six_class_accuracy": 0.6921898928024502,
+    "shared_class_macro_f1_with_six_class_predictions": 0.6687503463258411,
+    "shared_class_balanced_accuracy_with_six_class_predictions": 0.6089047392286848,
+    "restricted_four_class_accuracy": 0.7304747320061256,
+    "restricted_four_class_macro_f1": 0.6856224443961736
+  },
+  "enhanced": {
+    "strict_six_class_accuracy": 0.7136294027565084,
+    "shared_class_macro_f1_with_six_class_predictions": 0.6842142821272459,
+    "shared_class_balanced_accuracy_with_six_class_predictions": 0.6179259968903421,
+    "restricted_four_class_accuracy": 0.7641653905053599,
+    "restricted_four_class_macro_f1": 0.7161990679513823
+  },
+  "protocol": "MSID is external-only; exact/perceptual duplicates against MSLD removed before evaluation; both strict six-class and restricted shared-four-class metrics are reported."
+}

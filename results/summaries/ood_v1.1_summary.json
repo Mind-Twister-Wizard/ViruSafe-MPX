@@ -1,0 +1,10 @@
+{
+  "selected_method": "fusion__knn_cosine_k10__mahalanobis_pca64",
+  "n_ood_validation_categories": 8,
+  "n_ood_test_categories": 14,
+  "test_auroc_mean": 0.7623358475172073,
+  "test_auroc_std": 0.05760766920423706,
+  "test_fpr95_mean": 0.7522935779816514,
+  "test_id_acceptance_mean": 0.9523178807947019,
+  "test_ood_rejection_mean": 0.27116644823066843
+}

@@ -1,0 +1,79 @@
+{
+  "project": "ViruSafe-MPX v1.1 — Reliability Enhancement & External Validation",
+  "internal": {
+    "baseline": {
+      "accuracy": 0.7350993377483444,
+      "balanced_accuracy": 0.7682666067830602,
+      "macro_f1": 0.7292220782548541,
+      "macro_auroc": 0.9425249541307968,
+      "ece": 0.044361023397635146,
+      "brier": 0.379714704691167,
+      "n": 755
+    },
+    "enhanced": {
+      "accuracy": 0.8066225165562914,
+      "balanced_accuracy": 0.7944788235689707,
+      "macro_f1": 0.789563564932643,
+      "macro_auroc": 0.9550253086268398,
+      "ece": 0.03649427282327003,
+      "brier": 0.29752397999341135,
+      "n": 755
+    },
+    "mpox_recall_baseline": 0.5563380281690141,
+    "mpox_recall_enhanced": 0.7464788732394366,
+    "mondrian": {
+      "coverage": 0.9205298013245033,
+      "mean_set_size": 1.9271523178807948,
+      "singleton_rate": 0.38675496688741723,
+      "target_coverage": 0.9
+    },
+    "mcnemar": {
+      "baseline_correct_enhanced_wrong": 14,
+      "baseline_wrong_enhanced_correct": 68,
+      "discordant_pairs": 82,
+      "exact_p_value": 1.1349339471612945e-09
+    },
+    "n_oof": 755
+  },
+  "ood": {
+    "selected_method": "fusion__knn_cosine_k10__mahalanobis_pca64",
+    "n_ood_validation_categories": 8,
+    "n_ood_test_categories": 14,
+    "test_auroc_mean": 0.7623358475172073,
+    "test_auroc_std": 0.05760766920423706,
+    "test_fpr95_mean": 0.7522935779816514,
+    "test_id_acceptance_mean": 0.9523178807947019,
+    "test_ood_rejection_mean": 0.27116644823066843
+  },
+  "external": {
+    "discovered_images": 770,
+    "images_after_duplicate_filter": 653,
+    "excluded_duplicates_or_near_duplicates": 115,
+    "baseline": {
+      "strict_six_class_accuracy": 0.6921898928024502,
+      "shared_class_macro_f1_with_six_class_predictions": 0.6687503463258411,
+      "shared_class_balanced_accuracy_with_six_class_predictions": 0.6089047392286848,
+      "restricted_four_class_accuracy": 0.7304747320061256,
+      "restricted_four_class_macro_f1": 0.6856224443961736
+    },
+    "enhanced": {
+      "strict_six_class_accuracy": 0.7136294027565084,
+      "shared_class_macro_f1_with_six_class_predictions": 0.6842142821272459,
+      "shared_class_balanced_accuracy_with_six_class_predictions": 0.6179259968903421,
+      "restricted_four_class_accuracy": 0.7641653905053599,
+      "restricted_four_class_macro_f1": 0.7161990679513823
+    },
+    "protocol": "MSID is external-only; exact/perceptual duplicates against MSLD removed before evaluation; both strict six-class and restricted shared-four-class metrics are reported."
+  },
+  "explainability": {
+    "n_examples": 12,
+    "mean_cam_drop_30pct": 0.249008145748865,
+    "mean_random_drop_30pct": 0.22329936466852665
+  },
+  "methodological_guardrails": [
+    "No CNN retraining in v1.1",
+    "Outer test labels are not used for reliability-head hyperparameter fitting",
+    "OOD method is selected on disjoint DermNet categories and evaluated on held-out categories",
+    "MSID is external-only and duplicate-filtered against MSLD"
+  ]
+}
