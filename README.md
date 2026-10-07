@@ -202,7 +202,7 @@ Datasets, CNN checkpoints, caches and local-path prediction manifests are intent
 **ViruSafe-MPX for Reliability-Aware Differential Diagnosis of Mpox with Calibrated Uncertainty and External Validation**  
 Prepared for **IEEE ESCI 2027**.
 
-See [`paper/README.md`](paper/README.md). The current **7-page IEEE ESCI 2027 author manuscript is included as both DOCX and PDF** for research transparency; replace these with the final IEEE Xplore record after publication.
+See [`paper/README.md`](paper/README.md). 
 
 ## 👥 Authors
 
