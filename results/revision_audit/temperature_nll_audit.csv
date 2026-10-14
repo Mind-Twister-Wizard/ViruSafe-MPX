@@ -1,0 +1,2 @@
+validation_post_fusion_nll_before_temperature,validation_post_fusion_nll_after_temperature,outer_test_post_fusion_nll_before_temperature,outer_test_post_fusion_nll_after_temperature,note
+0.627475,0.624264,0.669274,0.671251,"Temperature fitted on outer validation; same validation was also used for fusion selection and conformal quantiles in v1.1. Coverage is therefore reported as empirical, not as a formal finite-sample guarantee."
