@@ -221,8 +221,9 @@ See [`paper/README.md`](paper/README.md).
 | Author | Role | ORCID |
 |---|---|---|
 | **Alok Raj*** | First & corresponding author | [0009-0003-7870-7065](https://orcid.org/0009-0003-7870-7065) |
-| **Pankaj Vaidya** | Co-author, Professor | [0000-0003-1304-630X](https://orcid.org/0000-0003-1304-630X) |
-| **Anurag Rana** | Co-author, Professor | [0000-0003-0247-8908](https://orcid.org/0000-0003-0247-8908) |
+| **Jasmine Kaur** | Second author | — |
+| **Pankaj Vaidya** | Third author, Professor | [0000-0003-1304-630X](https://orcid.org/0000-0003-1304-630X) |
+| **Anurag Rana** | Fourth author, Professor | [0000-0003-0247-8908](https://orcid.org/0000-0003-0247-8908) |
 
 **Affiliation:** Yogananda School of AI, Computers and Data Sciences, Shoolini University, Solan, Himachal Pradesh, India.
 
@@ -232,7 +233,7 @@ GitHub will automatically expose the repository citation from [`CITATION.cff`](C
 
 ```bibtex
 @software{raj_virusafe_mpx_2026,
-  author  = {Raj, Alok and Vaidya, Pankaj and Rana, Anurag},
+  author  = {Raj, Alok and Kaur, Jasmine and Vaidya, Pankaj and Rana, Anurag},
   title   = {ViruSafe-MPX: Reliability-Aware Image-Based Screening for Mpox Using Calibrated Uncertainty, Selective Prediction, and Cross-Dataset Evaluation},
   year    = {2026},
   version = {1.1.0},
