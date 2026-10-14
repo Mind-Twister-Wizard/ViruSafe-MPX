@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">🛡️ ViruSafe-MPX</h1>
-<p align="center"><b>Reliability-aware, uncertainty-calibrated and explainable AI for differential Mpox screening</b></p>
+<p align="center"><b>Reliability-aware image-based Mpox screening with calibrated uncertainty, selective prediction, OOD warnings and cross-dataset evaluation</b></p>
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-2ea44f.svg"/></a>
@@ -27,9 +27,9 @@
 
 ## 🔬 What is ViruSafe-MPX?
 
-**ViruSafe-MPX** is a research framework for six-class differential screening of **Mpox, chickenpox, measles, cowpox, hand-foot-and-mouth disease (HFMD), and healthy skin**. Instead of optimizing only headline accuracy, it explicitly models **uncertainty, abstention, conformal prediction, out-of-distribution (OOD) behavior, explainability, robustness, and external validation**.
+**ViruSafe-MPX** is a research framework for six-class differential screening of **Mpox, chickenpox, measles, cowpox, hand-foot-and-mouth disease (HFMD), and healthy skin**. Instead of optimizing only headline accuracy, it explicitly models **uncertainty, abstention, conformal prediction, out-of-distribution (OOD) behavior, explainability, robustness, and cross-dataset evaluation under domain shift**.
 
-The repository reproduces the code path used for the associated IEEE ESCI 2027 manuscript. The v1.1 enhancement reuses five trained EfficientNetV2-S checkpoints and adds a **frozen-feature reliability head** without retraining the CNN.
+The repository reproduces the code path used for the associated IEEE ESCI 2027 manuscript. The professor-reviewed manuscript frames the system as a retrospective research screening and referral prototype, not as a clinically validated diagnostic device. The v1.1 enhancement reuses five trained EfficientNetV2-S checkpoints and adds a **frozen-feature reliability head** without retraining the CNN.
 
 > [!IMPORTANT]
 > This is a **retrospective research prototype**, not a clinical diagnostic device. Outputs must not replace clinician assessment or confirmatory PCR testing.
@@ -48,7 +48,7 @@ The repository reproduces the code path used for the associated IEEE ESCI 2027 m
 - 🌐 Feature-space **OOD detection** with cosine k-NN + PCA-Mahalanobis fusion.
 - 🔍 Test-only **Grad-CAM** plus deletion-faithfulness analysis.
 - 🧪 Controlled corruption tests for blur, brightness, JPEG, occlusion and Gaussian noise.
-- 🌍 **Duplicate-filtered external validation** on MSID.
+- 🌍 **Duplicate-filtered cross-dataset evaluation** on MSID, with explicit provenance limitations.
 - 📊 Paired group-cluster bootstrap confidence intervals and exact **McNemar** significance testing.
 - ♻️ **Fully resumable execution**: datasets, epochs, folds, predictions and v1.1 caches survive interruption.
 
@@ -72,7 +72,9 @@ Additional safety-oriented results:
 | Selective accuracy @ ~90% coverage | **84.71%** |
 | Mondrian conformal coverage (nominal 90%) | **92.05%** |
 | Held-out-category OOD AUROC | **0.762 ± 0.058** |
-| External MSID restricted 4-class accuracy | **76.42%** |
+| OOD FPR@95TPR | **75.23%** |
+| OOD rejection at the validation-derived ID-95% operating point | **27.12%** |
+| Cross-dataset MSID restricted 4-class accuracy | **76.42%** |
 | External Mpox F1 | **83.54%** |
 | McNemar exact p-value | **1.13 × 10⁻⁹** |
 
@@ -104,7 +106,7 @@ The prediction path is deliberately **bounded**: calibrated class probabilities 
 RUN_VIRUSAFE_MPX.bat
 ```
 
-The launcher automatically creates a local Python 3.11 environment, installs CUDA-enabled PyTorch, downloads the required datasets, trains/evaluates the five folds, and then runs the v1.1 reliability/external-validation stage.
+The launcher automatically creates a local Python 3.11 environment, installs CUDA-enabled PyTorch, downloads the required datasets, trains/evaluates the five folds, and then runs the v1.1 reliability/cross-dataset evaluation stage.
 
 > [!TIP]
 > If the laptop shuts down or execution is interrupted, **run the same BAT again**. Completed work is preserved and reused.
@@ -151,7 +153,7 @@ ViruSafe-MPX/
 |---|---|---|
 | **MSLD v2.0** | six-class development and grouped out-of-fold testing | patient/group-aware splits + duplicate audit |
 | **DermNet** | OOD method selection and held-out-category test | disjoint category subsets; never used to train classifier |
-| **MSID** | external validation only | exact SHA-256 + perceptual-hash duplicate filtering vs MSLD |
+| **MSID** | cross-dataset evaluation only | exact SHA-256 + perceptual-hash filtering vs MSLD; patient-level independence cannot be proven from repository metadata |
 
 Dataset images are **not redistributed** in this repository. See [`docs/DATASETS_AND_LICENSES.md`](docs/DATASETS_AND_LICENSES.md).
 
@@ -163,9 +165,9 @@ At approximately 70% retained coverage, selective accuracy reaches **89.98%**. M
 
 <p align="center"><img src="results/figures/conformal_ood.png" width="92%" alt="Conformal and OOD results"/></p>
 
-## 🌍 External validation
+## 🌍 Cross-dataset evaluation on MSID
 
-The MSID evaluation is performed only after exact/perceptual duplicate filtering against the development data. **653** external images remained after the audit.
+MSID is excluded from all training, model selection and threshold tuning. Of **770** discovered files, **115** cross-dataset near matches (64-bit pHash, Hamming distance ≤4) and **2** within-MSID exact SHA-256 duplicates were removed; **653** images remained. Because public-image provenance and patient identifiers are incomplete, this is reported as **cross-dataset evaluation under domain shift**, not definitive clinical external validation.
 
 <p align="center"><img src="results/figures/external_msid_validation.png" width="92%" alt="External MSID validation"/></p>
 
@@ -191,15 +193,25 @@ Datasets, CNN checkpoints, caches and local-path prediction manifests are intent
 
 ## 🧪 Reproducibility guardrails
 
-- Outer test labels are **not used** to fit the v1.1 feature-head hyperparameters.
+- Outer test labels are **not used** to fit the v1.1 feature-head hyperparameters or choose the CNN/reliability-head blend.
+- The same outer-validation observations were reused for fusion selection, temperature fitting and Mondrian quantiles in the saved v1.1 run; therefore conformal coverage is reported as **empirical coverage**, not as a formal finite-sample guarantee.
 - OOD methods are selected on **different DermNet categories** from the held-out OOD test categories.
-- MSID is **external-only** and duplicate-filtered against MSLD before scoring.
+- MSID is **cross-dataset-only** and duplicate-filtered against MSLD before scoring; incomplete public metadata prevent proof of patient-level independence.
 - v1.1 does **not retrain** the CNN; it reuses the five independently trained base checkpoints.
 - A protocol-lock artifact records candidate grids and selection rules.
 
+## 🔎 Manuscript revision audit & traceability
+
+The professor-reviewed ESCI revision adds explicit audit material for grouped fold accounting, calibration/conformal reuse, cluster-aware inference, OOD candidate selection, MSID duplicate filtering, cross-dataset uncertainty, robustness and Grad-CAM variability.
+
+See docs/MANUSCRIPT_REVISION_AUDIT.md and results/revision_audit/.
+
+> [!NOTE]
+> The executable research code and locked protocol used by the revised manuscript remain traceable to audited commit **06ca6f6**. This documentation update does **not** alter the trained models, saved predictions, or experimental protocol.
+
 ## 📝 Paper
 
-**ViruSafe-MPX for Reliability-Aware Differential Diagnosis of Mpox with Calibrated Uncertainty and External Validation**  
+**ViruSafe-MPX: Reliability-Aware Image-Based Screening for Mpox Using Calibrated Uncertainty, Selective Prediction, and Cross-Dataset Evaluation**  
 Prepared for **IEEE ESCI 2027**.
 
 See [`paper/README.md`](paper/README.md). 
@@ -221,7 +233,7 @@ GitHub will automatically expose the repository citation from [`CITATION.cff`](C
 ```bibtex
 @software{raj_virusafe_mpx_2026,
   author  = {Raj, Alok and Vaidya, Pankaj and Rana, Anurag},
-  title   = {ViruSafe-MPX: Reliability-Aware Mpox Differential Diagnosis},
+  title   = {ViruSafe-MPX: Reliability-Aware Image-Based Screening for Mpox Using Calibrated Uncertainty, Selective Prediction, and Cross-Dataset Evaluation},
   year    = {2026},
   version = {1.1.0},
   url     = {https://github.com/Mind-Twister-Wizard/ViruSafe-MPX}
