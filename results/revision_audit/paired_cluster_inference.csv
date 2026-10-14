@@ -1,0 +1,2 @@
+pooled_accuracy_delta,pooled_macro_f1_delta,cluster_bootstrap_mean_accuracy_delta,cluster_bootstrap_accuracy_ci_low,cluster_bootstrap_accuracy_ci_high,cluster_bootstrap_mean_macro_f1_delta,cluster_bootstrap_macro_f1_ci_low,cluster_bootstrap_macro_f1_ci_high,patient_group_signflip_permutation_p,patient_groups,permutation_replicates
+0.071523,0.060341,0.071156,0.043305,0.097396,0.060508,0.032971,0.086754,0.000005,524,200000
