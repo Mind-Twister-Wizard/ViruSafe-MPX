@@ -1,0 +1,6 @@
+fold,feature_head_C,feature_head_class_weight,feature_head_cv_macro_f1,fusion_head_weight_alpha,post_fusion_temperature_T,base_temperature_T0
+1,3.0,balanced,1.000000,0.25,1.002610,0.776285
+2,1.0,none,1.000000,0.50,0.896334,0.801769
+3,3.0,none,1.000000,0.50,1.073579,0.883290
+4,3.0,balanced,1.000000,0.25,1.045182,0.865924
+5,1.0,balanced,0.985228,0.75,1.140424,0.875447
