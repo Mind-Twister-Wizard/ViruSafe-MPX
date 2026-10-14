@@ -1,7 +1,7 @@
 # ViruSafe-MPX — Experimental Design
 
 ## Research question
-Can a vision model for six-way differential diagnosis of Mpox and clinically similar
+Can a vision model for six-way differential screening of Mpox and clinically similar
 viral exanthems be made more reliable by explicitly combining probability calibration,
 open-set/OOD detection, selective abstention, conformal prediction, robustness testing,
 and visual explanation?
@@ -82,3 +82,15 @@ This is a retrospective research framework, not a clinical device. A strong chap
 should explicitly distinguish technical validation from clinical validation and discuss
 prospective multi-centre testing, subgroup/fairness analysis when metadata permit,
 clinical workflow integration, and regulatory oversight.
+
+
+## Professor-review clarification (v1.1.1 documentation)
+
+The final conference manuscript narrows the interpretation in four important ways:
+
+1. **Validation reuse:** outer validation was reused for fusion selection, temperature fitting and class-conditional conformal quantiles in the saved v1.1 run. Outer-test labels were untouched, but conformal coverage is reported as empirical rather than as a formal finite-sample guarantee.
+2. **Cross-dataset language:** MSID is described as cross-dataset evaluation under domain shift because duplicate filtering cannot establish patient-level independence from incomplete public metadata.
+3. **Cluster-aware inference:** uncertainty for primary pooled improvements is summarized with patient/group-cluster bootstrap intervals and a patient-group sign-flip permutation analysis.
+4. **Clinical boundary:** ViruSafe-MPX is a retrospective research screening/referral prototype; prospective multicentre validation, subgroup analysis, image-quality screening, prespecified thresholds and clinician-led confirmation are required before clinical use.
+
+Machine-readable evidence is stored under results/revision_audit/.
