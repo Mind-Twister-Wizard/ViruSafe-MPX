@@ -4,7 +4,7 @@
 
 **ViruSafe-MPX: Reliability-Aware Image-Based Screening for Mpox Using Calibrated Uncertainty, Selective Prediction, and Cross-Dataset Evaluation**
 
-Authors: **Alok Raj** (first and corresponding), **Pankaj Vaidya**, **Anurag Rana**.  
+Authors: **Alok Raj** (first and corresponding), **Jasmine Kaur** (second), **Pankaj Vaidya** (third), **Anurag Rana** (fourth).  
 Target venue: **IEEE ESCI 2027**.
 
 ## Revision status
