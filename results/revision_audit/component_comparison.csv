@@ -1,0 +1,5 @@
+component,macro_f1,accuracy,ece,mpox_recall,selective_accuracy_at_90,ood_auroc_heldout,external_restricted4_accuracy,conformal_coverage
+"Base EfficientNetV2-S + temperature scaling",0.729222,0.735099,0.044361,0.556338,0.782353,,0.730475,
+"+ Frozen-feature reliability head + validation-selected fusion",0.789564,0.806623,0.036494,0.746479,0.847059,,0.764165,
+"+ Class-conditional conformal prediction",0.789564,0.806623,0.036494,0.746479,0.847059,,0.764165,0.920530
+"+ Feature-space OOD gate (full v1.1)",0.789564,0.806623,0.036494,0.746479,0.847059,0.762336,0.764165,0.920530
