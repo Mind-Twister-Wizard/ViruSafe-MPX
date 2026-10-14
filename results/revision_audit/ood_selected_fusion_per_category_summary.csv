@@ -1,0 +1,15 @@
+category,n_ood,auroc_mean,auroc_sd,ood_rejection_mean
+"Acne and Rosacea Photos",114,0.744719,0.095045,0.268421
+"Actinic Keratosis Basal Cell Carcinoma and other Malignant Lesions",113,0.830721,0.057091,0.369912
+"Bullous Disease Photos",107,0.778028,0.057588,0.300935
+"Cellulitis Impetigo and other Bacterial Infections",112,0.736412,0.077704,0.246429
+"Herpes HPV and other STDs Photos",113,0.727422,0.040304,0.212389
+"Light Diseases and Disorders of Pigmentation",120,0.727130,0.075061,0.185000
+"Lupus and other Connective Tissue diseases",101,0.730470,0.063684,0.223762
+"Melanoma Skin Cancer Nevi and Moles",105,0.841514,0.040308,0.396190
+"Poison Ivy Photos and other Contact Dermatitis",101,0.744935,0.067698,0.271287
+"Psoriasis pictures Lichen Planus and related diseases",112,0.721902,0.069777,0.235714
+"Seborrheic Keratoses and other Benign Tumors",107,0.824968,0.040998,0.349533
+"Systemic Disease",112,0.752531,0.047189,0.207143
+"Urticaria Hives",104,0.738092,0.083783,0.238462
+"Vascular Tumors",105,0.779325,0.051011,0.304762
