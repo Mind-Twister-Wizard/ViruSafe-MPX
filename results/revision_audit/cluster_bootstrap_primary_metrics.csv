@@ -1,0 +1,13 @@
+variant,metric,estimate,ci_low,ci_high,bootstrap_unit,replicates
+Baseline,accuracy,0.735099,0.695257,0.775071,patient/group,2000
+Baseline,macro_f1,0.729222,0.686538,0.768249,patient/group,2000
+Baseline,ece,0.044361,0.036418,0.080453,patient/group,2000
+Baseline,brier,0.379715,0.328277,0.431271,patient/group,2000
+Baseline,nll,0.848075,0.725266,0.970457,patient/group,2000
+Baseline,mpox_recall,0.556338,0.480819,0.633907,patient/group,2000
+ViruSafe-MPX v1.1,accuracy,0.806623,0.768134,0.842566,patient/group,2000
+ViruSafe-MPX v1.1,macro_f1,0.789564,0.746542,0.827302,patient/group,2000
+ViruSafe-MPX v1.1,ece,0.036494,0.031449,0.073642,patient/group,2000
+ViruSafe-MPX v1.1,brier,0.297524,0.246760,0.348394,patient/group,2000
+ViruSafe-MPX v1.1,nll,0.671251,0.555861,0.792115,patient/group,2000
+ViruSafe-MPX v1.1,mpox_recall,0.746479,0.676642,0.814040,patient/group,2000
